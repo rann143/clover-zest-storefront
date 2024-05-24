@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ProductCard from "../components/ProductCard";
 import { useState } from "react";
+import "../index.css";
 
 const CartContainer = styled.div`
   display: flex;
@@ -21,6 +22,9 @@ function Cart({ productList, setProductList }) {
   return (
     <>
       <h2>My Cart</h2>
+      <p className={cartArray.length ? "hidden" : "visible"}>
+        No Items in Cart
+      </p>
       <CartContainer>{cartArray}</CartContainer>
     </>
   );
