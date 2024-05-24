@@ -8,6 +8,7 @@ const StyledNavBar = styled.nav`
   align-items: stretch;
   gap: 2rem;
   padding: 0 1rem;
+  width: 100%;
 `;
 
 const StyledUl = styled.ul`
