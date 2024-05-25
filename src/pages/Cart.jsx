@@ -9,9 +9,7 @@ const CartContainer = styled.div`
   flex-direction: column;
 `;
 
-function Cart({ productList, setProductList, totalPrice, setTotalPrice }) {
-  const [cartData, setCartData] = useState([]);
-
+function Cart({ productList, setProductList }) {
   const cartArray = productList
     .filter((item) => item.inCart === true)
     .map((item) => {
@@ -21,18 +19,20 @@ function Cart({ productList, setProductList, totalPrice, setTotalPrice }) {
           item={item}
           productList={productList}
           setProductList={setProductList}
-          totalPrice={totalPrice}
-          setTotalPrice={setTotalPrice}
-          cartData={cartData}
-          setCartData={setCartData}
         />
       );
     });
 
+  const totalP = productList
+    .filter((item) => item.inCart === true)
+    .map((item) => item.price * item.quantity)
+    .reduce((a, b) => a + b, 0);
+  console.log(totalP);
+
   return (
     <>
       <h2>My Cart</h2>
-      <p>Total: {totalPrice}</p>
+      <p>Total: ${totalP}</p>
       <p className={cartArray.length ? "hidden" : "visible"}>
         No Items in Cart
       </p>

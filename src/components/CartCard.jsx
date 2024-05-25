@@ -33,15 +33,7 @@ const Img = styled.img`
   margin: 0 2rem 2rem 2rem;
 `;
 
-function CartCard({
-  item,
-  productList,
-  setProductList,
-  totalPrice,
-  setTotalPrice,
-  cartData,
-  setCartData,
-}) {
+function CartCard({ item, productList, setProductList }) {
   const [finalData, setFinalData] = useState({
     quantity: 1,
     price: item.price,
@@ -54,14 +46,22 @@ function CartCard({
       product.id === item.id ? item : product
     );
     setProductList(updatedProductList);
-    setTotalPrice(totalPrice - finalData.price);
   }
 
   function handleQuantityChange(e) {
-    setFinalData({
-      price: item.price * Number(e.target.value),
-      quantity: e.target.value,
-    });
+    const updatedProductList = [...productList];
+    item.quantity = e.target.value;
+    updatedProductList.map((product) =>
+      product.id === item.id ? item : product
+    );
+    setProductList(updatedProductList);
+
+    // setFinalData({
+    //   price: item.price * Number(e.target.value),
+    //   quantity: e.target.value,
+    // });
+
+    // setTotalPrice((p) => p + finalData.price);
   }
 
   return (
@@ -75,12 +75,12 @@ function CartCard({
           type="number"
           min="1"
           max="100"
-          value={finalData.quantity}
+          value={item.quantity}
           onChange={handleQuantityChange}
         />
       </label>
       <p>
-        <strong>Price:</strong> ${finalData.price}
+        <strong>Price:</strong> ${item.price * item.quantity}
       </p>
       <Button onClick={removeFromCart}>Remove from Cart</Button>
     </Card>

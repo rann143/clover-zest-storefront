@@ -9,7 +9,6 @@ function App() {
   const { name } = useParams();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [totalPrice, setTotalPrice] = useState(0);
   const [productList, setProductList] = useState([
     {
       title: "Corduroy Pants",
@@ -51,6 +50,7 @@ function App() {
             ...item,
             inCart: false,
             price: Math.ceil(item.price),
+            quantity: 0,
           };
           return updatedItem;
         });
@@ -72,19 +72,9 @@ function App() {
       {name === "home" ? (
         <Home />
       ) : name === "shop" ? (
-        <Shop
-          productList={productList}
-          setProductList={setProductList}
-          totalPrice={totalPrice}
-          setTotalPrice={setTotalPrice}
-        />
+        <Shop productList={productList} setProductList={setProductList} />
       ) : name === "cart" ? (
-        <Cart
-          productList={productList}
-          setProductList={setProductList}
-          totalPrice={totalPrice}
-          setTotalPrice={setTotalPrice}
-        />
+        <Cart productList={productList} setProductList={setProductList} />
       ) : (
         <Home />
       )}

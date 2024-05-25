@@ -9,15 +9,13 @@ const ShopContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-function Shop({ productList, setProductList, totalPrice, setTotalPrice }) {
+function Shop({ productList, setProductList }) {
   const productArray = productList.map((product) => (
     <ProductCard
       key={product.id}
       item={product}
       productList={productList}
       setProductList={setProductList}
-      totalPrice={totalPrice}
-      setTotalPrice={setTotalPrice}
     />
   ));
 

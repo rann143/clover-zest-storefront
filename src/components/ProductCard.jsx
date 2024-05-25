@@ -31,22 +31,16 @@ const Img = styled.img`
   top: 5px;
 `;
 
-function ProductCard({
-  item,
-  productList,
-  setProductList,
-  totalPrice,
-  setTotalPrice,
-}) {
+function ProductCard({ item, productList, setProductList }) {
   function addToCart(e) {
     e.preventDefault();
     const updatedProductList = [...productList];
     item.inCart = true;
+    item.quantity = 1;
     updatedProductList.map((product) =>
       product.id === item.id ? item : product
     );
     setProductList(updatedProductList);
-    setTotalPrice(totalPrice + item.price);
   }
 
   return (
