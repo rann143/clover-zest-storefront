@@ -6,9 +6,9 @@ const ShopCard = styled.div`
   background-color: white;
   border: solid 1px black;
   width: 200px;
-  height: 500px;
+  height: 400px;
   padding: 0.25rem;
-  margin: 0.25rem;
+  margin: 0.75rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,8 +23,8 @@ const Button = styled.button`
 `;
 
 const Img = styled.img`
-  width: 200px;
-  height: 250px;
+  width: 90%;
+  height: 50%;
   borderradius: 10px;
   margin: 0 2rem 2rem 2rem;
   position: absolute;
@@ -37,6 +37,15 @@ function ProductCard({ item, productList, setProductList }) {
     const updatedProductList = [...productList];
     item.inCart = true;
     item.quantity = 1;
+    updatedProductList.map((product) =>
+      product.id === item.id ? item : product
+    );
+    setProductList(updatedProductList);
+  }
+
+  function removeFromCart() {
+    const updatedProductList = [...productList];
+    item.inCart = false;
     updatedProductList.map((product) =>
       product.id === item.id ? item : product
     );
@@ -58,6 +67,12 @@ function ProductCard({ item, productList, setProductList }) {
         Add to Cart
       </button>
       <p className={item.inCart ? "added" : "hidden"}>Added!</p>
+      <button
+        className={item.inCart ? "visible" : "hidden"}
+        onClick={removeFromCart}
+      >
+        Remove
+      </button>
     </ShopCard>
   );
 }

@@ -55,13 +55,6 @@ function CartCard({ item, productList, setProductList }) {
       product.id === item.id ? item : product
     );
     setProductList(updatedProductList);
-
-    // setFinalData({
-    //   price: item.price * Number(e.target.value),
-    //   quantity: e.target.value,
-    // });
-
-    // setTotalPrice((p) => p + finalData.price);
   }
 
   return (
@@ -80,7 +73,7 @@ function CartCard({ item, productList, setProductList }) {
         />
       </label>
       <p>
-        <strong>Price:</strong> ${item.price * item.quantity}
+        <strong>Price:</strong> ${item.price}
       </p>
       <Button onClick={removeFromCart}>Remove from Cart</Button>
     </Card>
