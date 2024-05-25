@@ -9,32 +9,7 @@ function App() {
   const { name } = useParams();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [productList, setProductList] = useState([
-    {
-      title: "Corduroy Pants",
-      price: 8.35,
-      description: `Yellow`,
-      image: "#",
-      category: "Men's Clothing",
-      inCart: true,
-    },
-    {
-      title: "Dad Hat",
-      price: 22.5,
-      description: `Cotton`,
-      image: "#",
-      category: "hats",
-      inCart: false,
-    },
-    {
-      title: "Leather Jacket",
-      price: 89.99,
-      description: `100% genuine leather`,
-      image: "#",
-      category: "Men's Clothing",
-      inCart: true,
-    },
-  ]);
+  const [productList, setProductList] = useState([]);
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
