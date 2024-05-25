@@ -10,6 +10,17 @@ const CartContainer = styled.div`
 `;
 
 function Cart({ productList, setProductList }) {
+  function removeAllFromCart() {
+    const updatedProductList = [...productList];
+
+    updatedProductList.map((product) => {
+      product.inCart = false;
+      product.quantity = 0;
+      return product;
+    });
+    setProductList(updatedProductList);
+  }
+
   const cartArray = productList
     .filter((item) => item.inCart === true)
     .map((item) => {
@@ -35,7 +46,10 @@ function Cart({ productList, setProductList }) {
       <p>Total: ${totalP}</p>
       <button
         className={cartArray.length ? "visible" : "hidden"}
-        onClick={() => alert("Thanks for shopping!")}
+        onClick={() => {
+          removeAllFromCart();
+          alert("Thanks for Shopping!");
+        }}
       >
         Checkout
       </button>
