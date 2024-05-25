@@ -33,6 +33,12 @@ function Cart({ productList, setProductList }) {
     <>
       <h2>My Cart</h2>
       <p>Total: ${totalP}</p>
+      <button
+        className={cartArray.length ? "visible" : "hidden"}
+        onClick={() => alert("Thanks for shopping!")}
+      >
+        Checkout
+      </button>
       <p className={cartArray.length ? "hidden" : "visible"}>
         No Items in Cart
       </p>
