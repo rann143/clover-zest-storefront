@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import "../index.css";
+import { useState } from "react";
 
-const StyledCard = styled.div`
+const ShopCard = styled.div`
   background-color: white;
   border: solid 1px black;
   width: 200px;
@@ -21,7 +22,22 @@ const Button = styled.button`
   border: none;
 `;
 
-function ProductCard({ item, productList, setProductList }) {
+const Img = styled.img`
+  width: 200px;
+  height: 250px;
+  borderradius: 10px;
+  margin: 0 2rem 2rem 2rem;
+  position: absolute;
+  top: 5px;
+`;
+
+function ProductCard({
+  item,
+  productList,
+  setProductList,
+  totalPrice,
+  setTotalPrice,
+}) {
   function addToCart(e) {
     e.preventDefault();
     const updatedProductList = [...productList];
@@ -30,45 +46,25 @@ function ProductCard({ item, productList, setProductList }) {
       product.id === item.id ? item : product
     );
     setProductList(updatedProductList);
+    setTotalPrice(totalPrice + item.price);
   }
 
   return (
-    <StyledCard>
-      <img
-        src={item.image}
-        style={{
-          width: "200px",
-          height: "250px",
-          borderRadius: "10px",
-          margin: "0 2rem 2rem 2rem",
-          position: "absolute",
-          top: "5px",
-        }}
-      />
+    <ShopCard>
+      <Img src={item.image} />
       <h3>{item.title}</h3>
       <p>
         <strong>Price:</strong> ${item.price}
       </p>
       {/* <p>{item.description}</p> */}
       <button
-        // className={item.inCart ? "hidden" : "visible"}
+        className={item.inCart ? "hidden" : "visible"}
         onClick={addToCart}
       >
         Add to Cart
       </button>
-      <label
-      //   className={item.inCart ? "visible" : "hidden"}
-      >
-        Quantity:
-        <input
-          type="number"
-          id="quantity"
-          name="quantity"
-          max="10"
-          style={{ margin: "0.25rem", width: "2rem" }}
-        />
-      </label>
-    </StyledCard>
+      <p className={item.inCart ? "added" : "hidden"}>Added!</p>
+    </ShopCard>
   );
 }
 

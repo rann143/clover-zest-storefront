@@ -43,3 +43,10 @@ li:hover {
   display: none;
   visibility: hidden;
 }
+
+.added {
+  display: block;
+  background-color: rgb(97, 236, 97);
+  padding: 0.25rem;
+  border-radius: 5px;
+}

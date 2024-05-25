@@ -9,6 +9,7 @@ function App() {
   const { name } = useParams();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [totalPrice, setTotalPrice] = useState(0);
   const [productList, setProductList] = useState([
     {
       title: "Corduroy Pants",
@@ -46,12 +47,14 @@ function App() {
       })
       .then((json) => {
         let data = json.map((item) => {
-          let updatedItem = { ...item, inCart: false };
+          let updatedItem = {
+            ...item,
+            inCart: false,
+            price: Math.ceil(item.price),
+          };
           return updatedItem;
         });
 
-        // const updatedList = [...productList];
-        // updatedList.push(data);
         setProductList(data);
       })
       .catch((error) => setError(error))
@@ -69,9 +72,19 @@ function App() {
       {name === "home" ? (
         <Home />
       ) : name === "shop" ? (
-        <Shop productList={productList} setProductList={setProductList} />
+        <Shop
+          productList={productList}
+          setProductList={setProductList}
+          totalPrice={totalPrice}
+          setTotalPrice={setTotalPrice}
+        />
       ) : name === "cart" ? (
-        <Cart productList={productList} setproductList={setProductList} />
+        <Cart
+          productList={productList}
+          setProductList={setProductList}
+          totalPrice={totalPrice}
+          setTotalPrice={setTotalPrice}
+        />
       ) : (
         <Home />
       )}
