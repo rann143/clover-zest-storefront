@@ -38,7 +38,6 @@ function Cart({ productList, setProductList }) {
     .filter((item) => item.inCart === true)
     .map((item) => item.price * item.quantity)
     .reduce((a, b) => a + b, 0);
-  console.log(totalP);
 
   return (
     <>

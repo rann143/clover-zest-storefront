@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import "../index.css";
 import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
 const ShopCard = styled.div`
   background-color: white;
@@ -55,7 +56,9 @@ function ProductCard({ item, productList, setProductList }) {
   return (
     <ShopCard>
       <Img src={item.image} />
-      <h3>{item.title}</h3>
+      <h3>
+        <Link to={"/" + item.id}>{item.title}</Link>
+      </h3>
       <p>
         <strong>Price:</strong> ${item.price}
       </p>

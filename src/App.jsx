@@ -4,6 +4,7 @@ import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import ProductCard from "./components/ProductCard";
 
 function App() {
   const { name } = useParams();
@@ -50,8 +51,14 @@ function App() {
         <Shop productList={productList} setProductList={setProductList} />
       ) : name === "cart" ? (
         <Cart productList={productList} setProductList={setProductList} />
+      ) : Number(name) > 0 && Number(name) <= productList.length ? (
+        <ProductCard
+          item={productList[name - 1]}
+          productList={productList}
+          setProductList={setProductList}
+        />
       ) : (
-        <Home />
+        <Shop productList={productList} setProductList={setProductList} />
       )}
     </>
   );
