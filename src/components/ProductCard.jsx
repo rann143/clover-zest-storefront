@@ -6,30 +6,99 @@ import { Link, useParams } from "react-router-dom";
 const ShopCard = styled.div`
   background-color: white;
   border: solid 1px black;
-  width: 200px;
-  height: 400px;
   padding: 0.25rem;
   margin: 0.75rem;
-  display: flex;
-  flex-direction: column;
+  width: 10rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr 2fr 30px 30px;
+  gap: 0.25rem;
   align-items: center;
-  justify-content: flex-end;
-  position: relative;
+  font-size: 15px;
+  text-align: center;
 `;
 
 const Button = styled.button`
-  background-color: white;
+  background-color: lightblue;
   border-radius: 5px;
   border: none;
+  padding: 0.25rem;
+  margin: 0.25rem 2rem;
+  grid-row: 4/5;
+  font-size: 15px;
+
+  ${({ inCart }) =>
+    !inCart &&
+    `
+    display: block;
+  `}
+
+  ${({ inCart }) =>
+    inCart &&
+    `
+    display:none;
+    visibility: hidden;
+    `}
+`;
+
+const RemoveButton = styled.button`
+  background-color: red;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  border: none;
+  grid-row: 5/6;
+  padding: 0;
+
+  ${({ inCart }) =>
+    !inCart &&
+    `
+    display:none;
+    visibility: hidden;
+  `}
+
+  ${({ inCart }) =>
+    inCart &&
+    `
+    display: block
+    `}
 `;
 
 const Img = styled.img`
-  width: 90%;
-  height: 50%;
-  borderradius: 10px;
-  margin: 0 2rem 2rem 2rem;
-  position: absolute;
+  width: 100px;
+  height: 100px;
   top: 5px;
+  grid-row: 1/2;
+  grid-column: 1/2;
+  justify-self: center;
+`;
+
+const P = styled.p`
+  margin: 0;
+  grid-row: 3/4;
+  align-self: center;
+`;
+
+const AddedP = styled.p`
+  margin: 0;
+  grid-row: 4/5;
+  background-color: lightgreen;
+  text-align: center;
+  padding: 0.25rem;
+  margin: 0 3rem;
+  border-radius: 5px;
+  display: none;
+  visibility: hidden;
+
+  ${({ inCart }) =>
+    inCart &&
+    `display: block;
+  visibility: visible;`}
+`;
+
+const H3 = styled.h3`
+  margin: 0;
+  grid-row: 2/3;
 `;
 
 function ProductCard({ item, productList, setProductList }) {
@@ -56,26 +125,22 @@ function ProductCard({ item, productList, setProductList }) {
   return (
     <ShopCard>
       <Img src={item.image} />
-      <h3>
+      <H3>
         <Link to={"/" + item.id}>{item.title}</Link>
-      </h3>
-      <p>
+      </H3>
+      <P>
         <strong>Price:</strong> ${item.price}
-      </p>
-      {/* <p>{item.description}</p> */}
-      <button
-        className={item.inCart ? "hidden" : "visible"}
-        onClick={addToCart}
-      >
+      </P>
+
+      <Button inCart={item.inCart} onClick={addToCart}>
         Add to Cart
-      </button>
-      <p className={item.inCart ? "added" : "hidden"}>Added!</p>
-      <button
-        className={item.inCart ? "visible" : "hidden"}
-        onClick={removeFromCart}
-      >
-        Remove
-      </button>
+      </Button>
+
+      <AddedP inCart={item.inCart}>Added!</AddedP>
+
+      {/* <RemoveButton inCart={item.inCart} onClick={removeFromCart}>
+        X
+      </RemoveButton> */}
     </ShopCard>
   );
 }
