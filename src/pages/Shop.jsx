@@ -7,7 +7,10 @@ import ProductCard from "../components/ProductCard";
 const ShopContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  margin: 1rem 4rem;
 `;
+
+const H2 = styled.h2``;
 
 function Shop({ productList, setProductList }) {
   const productArray = productList.map((product) => (
@@ -19,7 +22,12 @@ function Shop({ productList, setProductList }) {
     />
   ));
 
-  return <ShopContainer>{productArray}</ShopContainer>;
+  return (
+    <>
+      <H2>Shop</H2>
+      <ShopContainer>{productArray}</ShopContainer>
+    </>
+  );
 }
 
 export default Shop;

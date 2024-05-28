@@ -4,14 +4,16 @@ import { useState } from "react";
 
 const Card = styled.div`
   background-color: white;
-  border: solid 1px black;
-  width: 1000px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 5px rgba(0,0,0,0.300)
+  width: 90%;
   height: 200px;
   padding: 0.25rem;
   margin: 0.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   position: relative;
 `;
 

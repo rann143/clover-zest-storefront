@@ -5,10 +5,11 @@ import { Link, useParams } from "react-router-dom";
 
 const ShopCard = styled.div`
   background-color: white;
-  border: solid 1px black;
-  padding: 0.25rem;
-  margin: 0.75rem;
-  width: 10rem;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 0.75rem 0.5rem;
+  margin: 2rem;
+  width: 12rem;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 2fr 2fr 30px 30px;
@@ -99,6 +100,7 @@ const AddedP = styled.p`
 const H3 = styled.h3`
   margin: 0;
   grid-row: 2/3;
+  font-size: 15px;
 `;
 
 function ProductCard({ item, productList, setProductList }) {
