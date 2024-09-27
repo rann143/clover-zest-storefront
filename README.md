@@ -1,4 +1,4 @@
-# Shopping Cart: Ecommerce Store Frontend
+# Shopping Cart: Mock Ecommerce Store Frontend
 
 Live Version: https://cloverzest.netlify.app/home
 
