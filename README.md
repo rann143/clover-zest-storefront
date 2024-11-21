@@ -1,4 +1,5 @@
-# An Online Storefront Mock up for my Etsy Shop, CloverZest Design
+# Clover Zest Design
+## A storefront mock up for my Etsy Shop: Clover Zest Design
 
 Live Version: https://cloverzest.netlify.app/home
 
